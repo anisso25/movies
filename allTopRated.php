@@ -3,12 +3,66 @@
 ?>
 <!-- Afficher les cinq premiers films -->
 <div class="movies-section">
-<p class="text-right"><a href="index.php">Hide</a></p>
-<?php
+<p class="text-right"><a href="allLatestTrailers.php">See all</a></p>
+  <h2> </h2>
+  <?php
+  $i = 0;
+  // Boucle pour afficher les films
+  foreach ($films['results'] as $film) {
+    if ($i >= 4) {
+        break; // Sortir après les 5 premiers films
+    }
+
+    // Trouver le genre du film en fonction de son ID
+    $genre_ids = $film['genre_ids']; // Tableau d'IDs de genre
+    $film_genres = array();
+    foreach ($genre_ids as $genre_id) {
+        foreach ($genremovie as $genre) {
+            if ($genre['id'] === $genre_id) {
+                $film_genres[] = $genre['name'];
+            }
+        }
+    }
+
+    // Affichage du film
+    echo '<div class="movie" style="margin: 17px">';
+    echo '<div class="movie-image">';
+    echo '<span class="play">';
+    echo '<span class="name">' . $film['title'] . '</span>';
+    echo '</span>';
+    echo '<a href="#"><img src="https://image.tmdb.org/t/p/w500/' . $film['poster_path'] . '" alt="" /></a>';
+    echo '</div>';
+    echo '<div class="rating">';
+    echo '<p>Genres: ' . implode(', ', $film_genres) . '</p><br>'; // Afficher les genres
+    echo '<div class="stars">';
+    echo '<div class="stars-in"></div>';
+    echo '</div>';
+    echo '<span class="comments">12</span>';
+    echo '</div>';
+    echo '</div>';
+
+    $i++;
+  }
+  ?>
+</div>
+
+
+    <div class="cl">&nbsp;</div>
+      </div>
+      <div class="box">
+        <div class="head">
+          <h2>TOP RATED</h2>
+        </div>
+        
+        <div class="movies-container">
+        <p class="text-right"><a href="index.php">Hide</a></p>
+        <h2> </h2><br>
+
+        <?php
 // ...
 
 // Boucle pour afficher les films
-foreach ($films['results'] as $film) {
+foreach ($topratedmovie['results'] as $film) {
     // Trouver le genre du film en fonction de son ID
     $genre_ids = $film['genre_ids']; // Tableau d'IDs de genre
     $film_genres = array();
@@ -30,52 +84,19 @@ foreach ($films['results'] as $film) {
     echo '</div>';
     echo '<div class="rating">';
     echo '<p>Genres: ' . implode(', ', $film_genres) . '</p>'; // Afficher les genres
+    // echo '<div><span><p></p><br></span></div>';
     echo '<div class="stars">';
     echo '<div class="stars-in"></div>';
+    // echo '<div><span><p>...</p><br></span></div>';
     echo '</div>';
     echo '<span class="comments">12</span>';
     echo '</div>';
     echo '</div>';
 }
 ?>
-
-</div>
-
-<div class="cl">&nbsp;</div>
       </div>
-      <div class="box">
-        <div class="head">
-          <h2>TOP RATED</h2>
-          <p class="text-right"><a href="allTopRated.php">See all</a></p>
-        </div>
 
-        <?php
-        $i = 0;
-        foreach ($topratedmovie['results'] as $film) {
-          if ($i >= 5) {
-            break; // Sortir après les 5 premiers films
-          }
-          $i++;
-          // Affichage du film
-          echo '<div class="movie">';
-          echo '<div class="movie-image">';
-          echo '<span class="play">';
-          echo '<span class="name">' . $film['title'] . '</span>';
-          echo '</span>';
-          echo '<a href="#"><img src="https://image.tmdb.org/t/p/w500/' . $film['poster_path'] . '" alt="" /></a>';
-          echo '</div>';
-          echo '<div class="rating">';
-          echo '<p>RATING</p>';
-          echo '<div class="stars">';
-          echo '<div class="stars-in"></div>';
-          echo '</div>';
-          echo '<span class="comments">12</span>';
-          echo '</div>';
-          echo '</div>';
-        }
-        ?>
-
-        <div class="cl">&nbsp;</div>
+    <div class="cl">&nbsp;</div>
       </div>
       <div class="box">
         <div class="head">
