@@ -38,6 +38,8 @@
     echo '<div class="stars-in"></div>';
     echo '</div>';
     echo '<span class="comments">12</span>';
+    // Lien vers movieDetails.php avec l'ID du film en tant que paramètre
+    echo '<a href="movieDetails.php?id=' . $film['id'] . '">Voir les détails</a>';
     echo '</div>';
     echo '</div>';
 
@@ -90,6 +92,8 @@ foreach ($topratedmovie['results'] as $film) {
     // echo '<div><span><p>...</p><br></span></div>';
     echo '</div>';
     echo '<span class="comments">12</span>';
+    // Lien vers movieDetails.php avec l'ID du film en tant que paramètre
+    echo '<a href="movieDetails.php?id=' . $film['id'] . '">Voir les détails</a>';
     echo '</div>';
     echo '</div>';
 }
@@ -103,8 +107,18 @@ foreach ($topratedmovie['results'] as $film) {
           <h2>MOST COMMENTED</h2>
           <p class="text-right"><a href="#">See all</a></p>
         </div>
+
         <div class="movie">
-          <div class="movie-image"> <span class="play"><span class="name">HOUSE</span></span> <a href="#"><img src="css/images/movie13.jpg" alt="" /></a> </div>
+
+          <div class="movie-image"> 
+            <span class="play">
+              <span class="name">HOUSE</span>
+            </span> 
+            <a href="#">
+              <img src="css/images/movie13.jpg" alt="" />
+            </a> 
+          </div>
+          
           <div class="rating">
             <p>RATING</p>
             <div class="stars">
@@ -112,6 +126,7 @@ foreach ($topratedmovie['results'] as $film) {
             </div>
             <span class="comments">12</span> </div>
         </div>
+
         <div class="movie">
           <div class="movie-image"> <span class="play"><span class="name">VACANCY</span></span> <a href="#"><img src="css/images/movie14.jpg" alt="" /></a> </div>
           <div class="rating">

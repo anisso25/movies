@@ -34,6 +34,8 @@ foreach ($films['results'] as $film) {
     echo '<div class="stars-in"></div>';
     echo '</div>';
     echo '<span class="comments">12</span>';
+    // Lien vers movieDetails.php avec l'ID du film en tant que paramètre
+    echo '<a href="movieDetails.php?id=' . $film['id'] . '">Voir les détails</a>';
     echo '</div>';
     echo '</div>';
 }
@@ -70,6 +72,8 @@ foreach ($films['results'] as $film) {
           echo '<div class="stars-in"></div>';
           echo '</div>';
           echo '<span class="comments">12</span>';
+          // Lien vers movieDetails.php avec l'ID du film en tant que paramètre
+          echo '<a href="movieDetails.php?id=' . $film['id'] . '">Voir les détails</a>';
           echo '</div>';
           echo '</div>';
         }

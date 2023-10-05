@@ -12,12 +12,21 @@
 <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-func.js"></script>
 <!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+<script>
+  function changeGenre(selectedValue) {
+    // Vérifiez si l'utilisateur a sélectionné un genre valide (pas le texte par défaut)
+    if (selectedValue !== "#") {
+      // Redirige vers la page viewGenre.php avec le genre_id comme paramètre
+      window.location.href = selectedValue;
+    }
+  }
+</script>
 </head>
 <body>
 <!-- START PAGE SOURCE -->
 <div id="shell">
   <div id="header">
-    <h1 id="logo"><a href="#">MovieHunter</a></h1>
+    <h1 id="logo"><a href="index.php">MovieHunter</a></h1>
     <div class="social"> <span>FOLLOW US ON:</span>
       <ul>
         <li><a class="twitter" href="#">twitter</a></li>
@@ -32,11 +41,12 @@
         <option value="#" selected>Sélectionnez un genre</option>
         <?php
           foreach ($genremovie as $genre) {
-            echo '<option value="genremovie.php?genre_id=' . $genre['id'] . '">' . $genre['name'] . '</option>';
+            echo '<option value="viewGenre.php?genre_id=' . $genre['id'] . '">' . $genre['name'] . '</option>';
           }
         ?>
       </select>
     </div>
+
 
     <div id="sub-navigation">
       <ul>

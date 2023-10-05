@@ -1,6 +1,7 @@
 <?php
   include('header.php');
 ?>
+
 <!-- Afficher les cinq premiers films -->
 <div class="movies-section">
 <p class="text-right"><a href="allLatestTrailers.php">See all</a></p>
@@ -25,21 +26,24 @@
 
     // Affichage du film
     echo '<div class="movie" style="margin: 17px">';
-    echo '<div class="movie-image">';
-    echo '<span class="play">';
-    echo '<span class="name">' . $film['title'] . '</span>';
-    echo '</span>';
-    echo '<a href="#"><img src="https://image.tmdb.org/t/p/w500/' . $film['poster_path'] . '" alt="" /></a>';
-    echo '</div>';
-    echo '<div class="rating">';
-    echo '<p>Genres: ' . implode(', ', $film_genres) . '</p><br>'; // Afficher les genres
-    echo '<div class="stars">';
-    echo '<div class="stars-in"></div>';
-    echo '</div>';
-    echo '<span class="comments">12</span>';
+      echo '<div class="movie-image">';
+
+        echo '<span class="play">';
+        echo '<span class="name">' . $film['title'] . '</span>';
+        echo '</span>';
+
+        echo '<a href="#"><img src="https://image.tmdb.org/t/p/w500/' . $film['poster_path'] . '" alt="" /></a>';
+        echo '</div>';
+
+        echo '<div class="rating">';
+        echo '<p>Genres: ' . implode(', ', $film_genres) . '</p><br>'; // Afficher les genres
+        echo '<div class="stars">';
+        echo '<div class="stars-in"></div>';
+        echo '</div>';
+        echo '<span class="comments">12</span>';
     // Lien vers movieDetails.php avec l'ID du film en tant que paramètre
     echo '<a href="movieDetails.php?id=' . $film['id'] . '">Voir les détails</a>';
-    echo '</div>';
+      echo '</div>';
     echo '</div>';
 
     $i++;
@@ -91,6 +95,8 @@
       echo '<div class="stars-in"></div>';
       echo '</div>';
       echo '<span class="comments">12</span>';
+    // Lien vers movieDetails.php avec l'ID du film en tant que paramètre
+      echo '<a href="movieDetails.php?id=' . $film['id'] . '">Voir les détails</a>';
       echo '</div>';
       echo '</div>';
 
@@ -99,7 +105,6 @@
   ?>
 
       </div>
-
     <div class="cl">&nbsp;</div>
       </div>
       <div class="box">

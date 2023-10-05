@@ -78,7 +78,6 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,6 +97,19 @@ if (isset($_GET['id'])) {
             margin-right: 20px; /* Marge à droite de l'image */
         }
 
+        p{
+            margin: 6px; /* Marge à droite de l'image */
+        }
+        #button {
+            background-color: #f2a223;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
         /* Ajoutez d'autres styles CSS selon vos besoins */
     </style>
 </head>
@@ -110,6 +122,7 @@ if (isset($_GET['id'])) {
             <div>
                 <h1><?php echo $title; ?></h1>
                 <p>Genres: <?php echo implode(', ', $genres); ?></p>
+                <span class="play"><span class="name"><?php echo $title; ?></span></span>
                 <p>Rating: <?php echo $rating; ?></p>
                 <p>Overview: <?php echo $overview; ?></p>
                 <p>popularity: <?php echo $popularity; ?></p>
@@ -126,12 +139,16 @@ if (isset($_GET['id'])) {
                 <p>vote count: <?php echo $vote_count; ?></p>
                 <p>budget: <?php echo $formatted_budget; ?></p>
                 <!-- Vous pouvez ajouter plus de détails du film ici en utilisant les données de $film_details -->
+                <a href="lien_de_la_bande_dannonce" target="_blank">
+                    <button id="button">Voir bande d'annonce</button>
+                </a>
             </div>
         </div>
         <!-- End of movie details -->
 
         <!-- Link back to the homepage -->
         <a href="index.php">Back to Home</a>
+        <br><br><br><br>
     </div>
     <!-- END PAGE CONTENT -->
 </body>
@@ -141,5 +158,5 @@ if (isset($_GET['id'])) {
 
 
 <?php
-// include("footer.php");
+include("footer.php");
 ?>
