@@ -1,42 +1,45 @@
 <?php
-include('header.php');
+    include('header.php');
 ?>
+
 <?php
-// Paramètres pour l'URL de l'API
-$api_url = 'https://api.themoviedb.org/3/discover/movie';
-if (isset($_GET['genre_id'])) {
-    $genre_id = $_GET['genre_id'];
-} else {
-    echo 'ID du genre non spécifié.';
-}
+    // Remplacez 'YOUR_BEARER_TOKEN' par votre propre jeton d'accès (Bearer Token)
+    $bearer_token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMWVjNWRhZTk5NTZlZTE0YjMwYzIxYzhjZjlkNWY5MSIsInN1YiI6IjY1MGM3MDNhYjViYzIxMDEwYmQyODRmOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AkqYdopSmyXNAti6A5Va9Ymu-MPJB-kpLO8y3onCWCk';
 
-// Construire l'URL avec les paramètres
-$url = "$api_url?with_genres=$genre_id";
+    // Récupérez le terme de recherche depuis la requête GET
+    $envio = isset($_GET['search_field']) ? $_GET['search_field'] : '';
 
-// Options pour la requête HTTP
-$options = [
-    'http' => [
-        'header' => "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMWVjNWRhZTk5NTZlZTE0YjMwYzIxYzhjZjlkNWY5MSIsInN1YiI6IjY1MGM3MDNhYjViYzIxMDEwYmQyODRmOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AkqYdopSmyXNAti6A5Va9Ymu-MPJB-kpLO8y3onCWCk"
-    ]
-];
+    // Construisez l'URL de l'API pour la recherche
+    $api_url = 'https://api.themoviedb.org/3/search/movie';
+    $url = "$api_url?query=" . urlencode($envio);
 
-// Créer un contexte pour la requête HTTP
-$context = stream_context_create($options);
+    // Options pour la requête HTTP
+    $options = [
+        'http' => [
+            'header' => "Authorization: Bearer $bearer_token"
+        ]
+    ];
 
-// Effectuer la requête HTTP pour obtenir les films du genre "Drame"
-$movies_response = file_get_contents($url, false, $context);
+    // Créer un contexte pour la requête HTTP
+    $context = stream_context_create($options);
 
-if ($movies_response !== FALSE) {
-    $movies = json_decode($movies_response, true);
+    // Effectuer la requête HTTP
+    $response = file_get_contents($url, false, $context);
 
-    // Afficher les films
-    foreach ($movies['results'] as $movie) {
-        // echo 'Titre du film : ' . $movie['title'] . '<br>';
+    // Vérifiez si la requête a réussi
+    if ($response !== FALSE) {
+        // Décodage de la réponse JSON en tableau associatif
+        $movies = json_decode($response, true);
+
+        // Affichez les résultats de la recherche
+        foreach ($movies['results'] as $movie) {
+            // echo 'Titre du film : ' . $movie['title'] . '<br>';
+        }
+    } else {
+        echo 'Erreur lors de la récupération des données.';
     }
-} else {
-    echo 'Erreur lors de la récupération des films.';
-}
 ?>
+
 
 <!-- Afficher les cinq premiers films -->
 <div class="movies-section">

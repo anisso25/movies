@@ -46,5 +46,8 @@
   </div>
 </div>
 <!-- END PAGE SOURCE -->
+<script 
+};
+></script>
 </body>
 </html>

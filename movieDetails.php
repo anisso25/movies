@@ -86,6 +86,30 @@ if (isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Detail</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("openModalLink");
+        var span = document.getElementsByClassName("close")[0];
+
+            modal.style.display = "none";
+        if (btn && modal && span) {
+            btn.onclick = function() {
+            modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+            modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            }
+        }
+        });
+    </script>
     <style>
         /* Ajoutez du CSS pour placer les éléments à droite de l'image */
         #movie-details {
@@ -111,6 +135,41 @@ if (isset($_GET['id'])) {
             font-size: 16px;
         }
         /* Ajoutez d'autres styles CSS selon vos besoins */
+        .modal-content {
+        background-color: transparent; /* Modifiez la couleur du fond de la modale en transparent */
+        margin: 5% auto;
+        padding: 0;
+        border: none; /* Supprimez la bordure pour une apparence sans bordure */
+        width: 585px;
+        height: 329px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        }
+
+        .modal-content iframe {
+        width: 100%;
+        height: 100%;
+        border: none; /* Supprimez la bordure de l'iframe */
+        }
+
+        .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        margin-right: 10px;
+        margin-top: 5px;
+        }
+
+        .close:hover,
+        .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -138,10 +197,21 @@ if (isset($_GET['id'])) {
                 <p>vote average: <?php echo $vote_average; ?></p>
                 <p>vote count: <?php echo $vote_count; ?></p>
                 <p>budget: <?php echo $formatted_budget; ?></p>
+
                 <!-- Vous pouvez ajouter plus de détails du film ici en utilisant les données de $film_details -->
-                <a href="lien_de_la_bande_dannonce" target="_blank">
-                    <button id="button">Voir bande d'annonce</button>
+
+                <a href="#" id="openModalLink">
+                    <button id="openModalButton">Voir bande d'annonce</button>
                 </a>
+
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <iframe src="video.php?film_id=<?php echo $film_id; ?>"></iframe>
+                    </div>
+                    </div>
+
+            </div>
             </div>
         </div>
         <!-- End of movie details -->

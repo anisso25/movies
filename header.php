@@ -1,7 +1,8 @@
 <?php
   include('config.php');
   include('config2.php');
-  include('genremovie.php')
+  include('genremovie.php');
+  $api_key = 'c1ec5dae9956ee14b30c21c8cf9d5f91';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -56,9 +57,9 @@
         <li><a href="#">MOST COMMENTED</a></li>
       </ul>
       <div id="search">
-        <form action="#" method="get" accept-charset="utf-8">
+        <form action="search.php" method="get" accept-charset="utf-8">
           <label for="search-field">SEARCH</label>
-          <input type="text" name="search field" value="Enter search here" id="search-field" class="blink search-field"  />
+          <input type="text" name="search_field" value="Enter search here" id="search-field" class="blink search-field" />
           <input type="submit" value="GO!" class="search-button" />
         </form>
       </div>
